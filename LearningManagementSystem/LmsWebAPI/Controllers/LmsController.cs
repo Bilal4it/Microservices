@@ -29,11 +29,23 @@ namespace LmsWebAPI.Controllers
             return lmsService.GetAllStudents();
         }
 
+        [HttpGet]
+        [Route("Courses")]
+        public IEnumerable<Course> GetAllCourses()
+        {
+            return lmsService.GetAllCourses();
+        }
 
         [HttpGet("{id}")]
         public Student Get(int id)
         {
             return lmsService.GetStudentById(id);
+        }
+
+        [HttpGet("Students/{studentId}")]
+        public List<Exam> GetGrades(int studentId)
+        {
+            return lmsService.GetGradesOfStudent(studentId);
         }
 
 

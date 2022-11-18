@@ -31,7 +31,7 @@ namespace LmsWebAPI.Services
 
         public IEnumerable<Course> GetAllCourses()
         {
-            throw new NotImplementedException();
+            return lmsDbContext.Courses;
         }
 
         public IEnumerable<Exam> GetAllExams()
@@ -61,9 +61,10 @@ namespace LmsWebAPI.Services
             return examsorderedByGrade;
         }
 
-        public IOrderedQueryable<Exam> GetGradesOfStudent(int student)
+        public List<Exam> GetGradesOfStudent(int studentId)
         {
-            throw new NotImplementedException();
+            var examsorderedByGrade = (from e in lmsDbContext.Exams where e.Student.Id == studentId orderby e.Grade ascending select e).ToList<Exam>() ;
+            return examsorderedByGrade;
         }
 
 
